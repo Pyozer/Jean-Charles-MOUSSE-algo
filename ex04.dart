@@ -53,7 +53,7 @@ class Node<T> {
 }
 
 void main() {
-  test("Test LinkedList function", () {
+  test("Test LinkedList functions", () {
     LinkedList<String> list = new LinkedList<String>();
     expect(list.head, isNull);
     expect(list.length, equals(0));
