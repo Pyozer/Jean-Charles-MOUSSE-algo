@@ -10,12 +10,12 @@ class LinkedList<T> {
 
   LinkedList();
 
-  int get length => length;
+  int get length => _length;
 
   void appendToTail(T value) {
     if (head == null) {
       head = new Node(value);
-      this._length = 1;
+      _length = 1;
       return;
     }
 
@@ -28,19 +28,19 @@ class LinkedList<T> {
     Node<T> newTail = new Node<T>(value, tail);
     tail.next = newTail;
     tail = newTail;
-    this._length++;
+    _length++;
   }
 
   Node<T> deleteNode(int index) {
-    if (this._length <= index) throw IndexError(index, this);
+    if (_length <= index) throw IndexError(index, this);
 
-    Node<T> node = this.head;
+    Node<T> node = head;
     for (int i = 0; i < index; i++) {
       node = node.next;
     }
     node.prev?.next = node.next;
     node.next?.prev = node.prev;
-    this._length--;
+    _length--;
 
     return node;
   }

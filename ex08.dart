@@ -9,14 +9,14 @@ class StackFIFO<E> {
 
   StackFIFO();
 
-  int get length => this._stack.length;
+  int get length => _stack.length;
 
   void enqueue(E value) {
-    this._stack.insert(0, value);
+    _stack.insert(0, value);
   }
 
   E dequeue() {
-    return this._stack.removeLast();
+    return _stack.removeLast();
   }
 }
 

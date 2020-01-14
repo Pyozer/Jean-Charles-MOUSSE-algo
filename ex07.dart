@@ -8,17 +8,17 @@ class StackLIFO<E> {
   List<E> _stack;
 
   StackLIFO(List<E> initialValues) {
-    this._stack = initialValues ?? [];
+    _stack = initialValues ?? [];
   }
 
-  int get length => this._stack.length;
+  int get length => _stack.length;
 
   void push(E value) {
-    this._stack.add(value);
+    _stack.add(value);
   }
 
   E pop() {
-    return this._stack.removeLast();
+    return _stack.removeLast();
   }
 }
 
