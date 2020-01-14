@@ -1,0 +1,9 @@
+name: Algo
+version: 0.0.1
+description: School project to learn some basic to complex algorithms 
+homepage: https://github.com/pyozer/Jean-Charles-MOUSSE-Algo
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+
+dev_dependencies:
+  test: ^1.11.0
