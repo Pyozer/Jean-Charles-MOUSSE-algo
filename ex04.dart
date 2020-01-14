@@ -6,14 +6,16 @@ import 'package:test/test.dart';
 
 class LinkedList<T> {
   Node<T> head;
-  int length = 0;
+  int _length = 0;
 
   LinkedList();
+
+  int get length => length;
 
   void appendToTail(T value) {
     if (head == null) {
       head = new Node(value);
-      this.length = 1;
+      this._length = 1;
       return;
     }
 
@@ -26,11 +28,11 @@ class LinkedList<T> {
     Node<T> newTail = new Node<T>(value, tail);
     tail.next = newTail;
     tail = newTail;
-    this.length++;
+    this._length++;
   }
 
   Node<T> deleteNode(int index) {
-    if (this.length <= index) throw IndexError(index, this);
+    if (this._length <= index) throw IndexError(index, this);
 
     Node<T> node = this.head;
     for (int i = 0; i < index; i++) {
@@ -38,7 +40,7 @@ class LinkedList<T> {
     }
     node.prev?.next = node.next;
     node.next?.prev = node.prev;
-    this.length--;
+    this._length--;
 
     return node;
   }

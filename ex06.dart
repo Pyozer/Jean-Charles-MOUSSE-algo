@@ -1,8 +1,6 @@
-// EXO 04:
-// Create a Linked List with 2 methods: appendToTail(v: T) and deleteNode(index: number)
+// EXO 06:
+// Implement an algorithm to find the nth to last element of a singly linked list.
 //
-
-import 'dart:collection';
 
 import 'package:test/test.dart';
 import './ex04.dart';

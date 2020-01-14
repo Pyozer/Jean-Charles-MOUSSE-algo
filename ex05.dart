@@ -1,5 +1,5 @@
-// EXO 04:
-// Create a Linked List with 2 methods: appendToTail(v: T) and deleteNode(index: number)
+// EXO 05:
+// Write code to remove duplicates from an unsorted linked list.
 //
 
 import 'package:test/test.dart';
