@@ -1,5 +1,15 @@
 # Algo exam part .01 -- basics
 
+## Run project
+
+You must have Dart installed (or use DartPad online).
+
+Run `pub get` in terminal to install dependencies (test).
+
+To run all test just do `pub run test ./ex*.dart`
+
+To run only one test you can do `pub run test ./ex01.dart`
+
 ## Guidelines
 
 All exercises **HAVE TO** be at the root of your repositories.<br />
