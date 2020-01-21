@@ -6,23 +6,29 @@ import 'package:test/test.dart';
 
 class LinkedList<T> {
   Node<T> head;
+  Node<T> tail;
   int _length = 0;
 
   LinkedList();
 
   int get length => _length;
 
+  Node<T> findNode(int index) {
+    if (_length <= index) throw IndexError(index, this);
+
+    Node<T> node = head;
+    for (int i = 0; i < index; i++) {
+      node = node.next;
+    }
+    return node;
+  }
+
   void appendToTail(T value) {
     if (head == null) {
       head = new Node(value);
+      tail = head;
       _length = 1;
       return;
-    }
-
-    // Get tail of list
-    Node<T> tail = head;
-    while (tail.next != null) {
-      tail = tail.next;
     }
     // Add value as tail
     Node<T> newTail = new Node<T>(value, tail);
@@ -31,18 +37,16 @@ class LinkedList<T> {
     _length++;
   }
 
-  Node<T> deleteNode(int index) {
-    if (_length <= index) throw IndexError(index, this);
-
-    Node<T> node = head;
-    for (int i = 0; i < index; i++) {
-      node = node.next;
-    }
+  Node<T> deleteNode(Node<T> node) {
     node.prev?.next = node.next;
     node.next?.prev = node.prev;
     _length--;
-
     return node;
+  }
+
+  Node<T> deleteNodeIndex(int index) {
+    if (_length <= index) throw IndexError(index, this);
+    return deleteNode(findNode(index));
   }
 }
 
@@ -80,18 +84,22 @@ void main() {
     expect(list.head.next.next.prev.prev.value, equals("Head"));
     expect(list.length, equals(3));
 
-    expect(() => list.deleteNode(5), throwsA(TypeMatcher<IndexError>()));
+    expect(() => list.deleteNodeIndex(5), throwsA(TypeMatcher<IndexError>()));
 
-    Node deletedNode = list.deleteNode(1);
-    expect(deletedNode.value, equals("Index 1"));
+    Node deletedNode = list.deleteNodeIndex(2);
+    expect(deletedNode.value, equals("Index 2"));
     expect(list.length, equals(2));
 
     expect(list.head.next, isNotNull);
-    expect(list.head.next.value, equals("Index 2"));
+    expect(list.head.next.value, equals("Index 1"));
     expect(list.head.next.next, isNull);
     expect(list.head.next.prev, isNotNull);
     expect(list.head.next.prev.value, equals("Head"));
 
-    expect(() => list.deleteNode(2), throwsA(TypeMatcher<IndexError>()));
+    deletedNode = list.deleteNodeIndex(1);
+    expect(deletedNode.value, equals("Index 1"));
+    expect(list.length, equals(1));
+
+    expect(() => list.deleteNodeIndex(2), throwsA(TypeMatcher<IndexError>()));
   });
 }

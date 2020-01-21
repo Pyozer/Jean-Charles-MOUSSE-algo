@@ -11,23 +11,17 @@ String swap(String value, int index, int index2) {
   return chars.join('');
 }
 
-void permute(String data, [int i = 0]) {
-  if (i == data.length) {
-    print(data);
-  } else {
-    for (int j = i; j < data.length; j++) {
-      permute(swap(data, i, j), i + 1);
-    }
-  }
+String permute(String data, [int i = 0]) {
+  if (i == data.length) return data;
+  return [
+    for (int j = i; j < data.length; j++) permute(swap(data, i, j), i + 1)
+  ].join(',');
 }
 
 void main() {
   test("Test all permutation string", () {
-    // It's not real test no time to finish :/
-    permute("Hi");
-    print('\n');
-    permute("How");
-    print('\n');
-    permute("swap");
+    expect(permute("Hi"), equals('Hi,iH'));
+    expect(permute("How"), equals('How,Hwo,oHw,owH,woH,wHo'));
+    expect(permute("swap"), equals('swap,swpa,sawp,sapw,spaw,spwa,wsap,wspa,wasp,waps,wpas,wpsa,awsp,awps,aswp,aspw,apsw,apws,pwas,pwsa,paws,pasw,psaw,pswa'));
   });
 }

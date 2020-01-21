@@ -6,9 +6,10 @@ import 'package:test/test.dart';
 
 bool isAnagram(String first, String second) {
   if (first.length != second.length) return false;
-  if (first.toLowerCase() == second.toLowerCase()) return true;
 
   String editedSecond = second.toLowerCase();
+  if (first.toLowerCase() == editedSecond) return true;
+
   for (int i = 0; i < first.length; i++) {
     int indexFound = editedSecond.indexOf(first[i].toLowerCase());
     if (indexFound < 0) {

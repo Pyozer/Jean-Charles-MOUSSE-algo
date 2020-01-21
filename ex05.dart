@@ -8,23 +8,15 @@ import './ex04.dart';
 void removeDuplicate<T>(LinkedList<T> list) {
   if (list.length < 2) return;
 
+  Map<T, bool> scanned = {};
   Node<T> currNode = list.head;
-  int i = 0;
   while (currNode != null) {
-    Node<T> nextNode = currNode.next;
-    int j = i + 1;
-    // Iterate from curr to end
-    while (nextNode != null) {
-      if (currNode.value == nextNode.value) {
-        nextNode = nextNode.next; // Store future next before delete
-        list.deleteNode(j);
-      } else {
-        nextNode = nextNode.next;
-        j++; // Increment index only when not deleting
-      }
+    if (scanned[currNode.value] != null) {
+      list.deleteNode(currNode);
+    } else {
+      scanned[currNode.value] = true;
     }
     currNode = currNode.next;
-    i++;
   }
 }
 

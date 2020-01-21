@@ -9,10 +9,7 @@ LinkedList<T> findNthToLast<T>(LinkedList<T> list, int n) {
   if (list.length == 0 && n == 0) return new LinkedList<T>();
   if (n >= list.length) throw new IndexError(n, list);
   // Find the nth element
-  Node<T> nodeN = list.head;
-  for (int i = 0; i < n; i++) {
-    nodeN = nodeN.next;
-  }
+  Node<T> nodeN = list.findNode(n);
   LinkedList<T> sublist = new LinkedList<T>();
   sublist.appendToTail(nodeN.value);
 
